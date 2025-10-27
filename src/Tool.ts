@@ -1,9 +1,11 @@
 import type { RequestHandlerExtra } from '@modelcontextprotocol/sdk/shared/protocol.js'
 import type { CallToolResult, ServerNotification, ServerRequest } from '@modelcontextprotocol/sdk/types.js'
-import { log } from '../Logger.ts'
+import { log } from './Logger.ts'
 import * as util from 'node:util'
-import { fetchOuraData } from './Api.ts'
-import { errorMessages } from '../Error.ts'
+import { fetchOuraData } from './Oura/Api.ts'
+import { errorMessages } from './Error.ts'
+import type { ZodRawShape } from 'zod'
+import type { OuraTool } from './Types.ts'
 
 /** Executes Oura Tool -- an API call -- and translates the response into MCP CallToolResult */
 export const executeOuraTool = async (
@@ -46,3 +48,8 @@ const mcpResponseError = (error: unknown): CallToolResult => {
     ],
   }
 }
+
+export const makeOuraTool = <InputArgs extends ZodRawShape, OutputArgs extends ZodRawShape>(
+  definition: OuraTool<InputArgs, OutputArgs>,
+) =>
+  definition

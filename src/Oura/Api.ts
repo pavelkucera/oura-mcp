@@ -85,7 +85,7 @@ const makeOuraRequest = async <T>(
     }
   }
 
-  // Non-ok status code
+  // Non-OK status code
   if (!response.ok) {
     log.debug('Unexpected HTTP status', { requestId, response })
 
