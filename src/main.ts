@@ -8,6 +8,8 @@ import { ToolDailyEnhancedTags } from './Tools/DailyEnhancedTags.ts'
 import { ToolDailyReadinessScores } from './Tools/DailyReadinessScores.ts'
 import { ToolSleepInformation } from './Tools/SleepInformation.ts'
 import { ToolMultipleHeartRateDocuments } from './Tools/HeartRate.ts'
+import { ToolMultipleWorkoutDocuments } from './Tools/Workout.ts'
+import { ToolMultipleSessionDocuments } from './Tools/Session.ts'
 
 async function main() {
   const OURA_ACCESS_TOKEN = process.env['OURA_ACCESS_TOKEN']
@@ -42,6 +44,8 @@ async function main() {
   registerTool(ToolDailyReadinessScores(OURA_ACCESS_TOKEN))
   registerTool(ToolSleepInformation(OURA_ACCESS_TOKEN))
   registerTool(ToolMultipleHeartRateDocuments(OURA_ACCESS_TOKEN))
+  registerTool(ToolMultipleWorkoutDocuments(OURA_ACCESS_TOKEN))
+  registerTool(ToolMultipleSessionDocuments(OURA_ACCESS_TOKEN))
 
   const transport = new StdioServerTransport()
   await server.connect(transport)
